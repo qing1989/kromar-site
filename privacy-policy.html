@@ -12,10 +12,12 @@
     body { margin: 0; font-family: -apple-system, BlinkMacSystemFont, "Inter", "Noto Sans SC", "Noto Sans JP", "Noto Sans KR", sans-serif; background: var(--bg); color: var(--fg); line-height: 1.65; -webkit-font-smoothing: antialiased; }
     main { max-width: 760px; margin: 0 auto; padding: 40px 20px 72px; }
     header { margin-bottom: 28px; padding-bottom: 20px; border-bottom: 1px solid var(--border); }
-    .top { display: flex; align-items: flex-start; justify-content: space-between; gap: 16px; flex-wrap: wrap; }
+    /* The bar holds only language-invariant content (brand + switcher), so switching languages can
+       never move or re-wrap the switcher. Title and meta live below it on their own lines. */
+    .bar { display: flex; align-items: center; justify-content: space-between; gap: 12px; flex-wrap: wrap; }
     .brand { display: inline-flex; align-items: center; gap: 8px; font-weight: 600; font-size: 14px; letter-spacing: 0.04em; color: var(--muted); text-transform: uppercase; }
     .dot { width: 8px; height: 8px; border-radius: 50%; background: var(--accent); display: inline-block; }
-    h1 { margin: 10px 0 6px; font-size: 28px; letter-spacing: -0.02em; }
+    h1 { margin: 18px 0 6px; font-size: 28px; letter-spacing: -0.02em; }
     .meta { font-size: 13px; color: var(--muted); }
     .langs { display: inline-flex; flex-wrap: wrap; gap: 4px; padding: 4px; border: 1px solid var(--border); border-radius: 999px; background: var(--card); }
     .langs button { appearance: none; border: 0; background: transparent; color: var(--muted); font: inherit; font-size: 12.5px; padding: 6px 12px; border-radius: 999px; cursor: pointer; }
@@ -35,12 +37,8 @@
 <body>
 <main>
   <header>
-    <div class="top">
-      <div>
-        <div class="brand"><span class="dot"></span> Kromar · app.kromar.film</div>
-        <h1>Privacy Policy</h1>
-        <div class="meta" id="meta">Effective Date: November 28, 2026 · Applies to Kromar (iOS &amp; Android)</div>
-      </div>
+    <div class="bar">
+      <div class="brand"><span class="dot"></span> Kromar · app.kromar.film</div>
       <nav class="langs" aria-label="Language">
         <button type="button" data-lang="en" aria-pressed="true">English</button>
         <button type="button" data-lang="ja" aria-pressed="false">日本語</button>
@@ -49,6 +47,8 @@
         <button type="button" data-lang="zh-CN" aria-pressed="false">简体中文</button>
       </nav>
     </div>
+    <h1 id="title">Privacy Policy</h1>
+    <div class="meta" id="meta">Effective Date: November 28, 2026 · Applies to Kromar (iOS &amp; Android)</div>
   </header>
 
   <!-- ============================ English ============================ -->
